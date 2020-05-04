@@ -1,0 +1,19 @@
+{
+    "autoRefresh": false,
+    "browser": "Google Chrome Canary",
+    "pollTimeout": 1200,
+    "debugOnly": true,
+    "debugFilter": "USER_DEBUG|FATAL_ERROR",
+    "apiVersion": "38.0",
+    "deployOptions": {
+        "checkOnly": false,
+        "testLevel": "runLocalTests",
+        "verbose": false,
+        "ignoreWarnings": true
+    },
+    "username": "pingmir@brave-moose-110047.com",
+    "password": "Sales123!KZXLxatmR7fuxHUhYtWBkpJPB",
+    "url": "https://login.salesforce.com",
+    "autoCompile": false,
+    "src": "src"
+}
