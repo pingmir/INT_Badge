@@ -17,3 +17,14 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+# The Authentication is via JWT. So you need a the private key of the certificate used.
+- task: DownloadSecureFile@1
+  name: key
+  inputs:
+    secureFile: 'server.key'
+    retryCount: '5'
+  
+# Login to the target org
+- script: sfdx force:auth:jwt:grant -u $(USERNAME) -f $(key.secureFilePath) -i $(CONSUMER_ID) -r $(INSTANCE_URL)
+  displayName: 'Authenticating'
