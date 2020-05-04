@@ -26,7 +26,7 @@ steps:
     retryCount: '5'
   
 # Login to the target org
-- script: sfdx force:auth:jwt:grant -u $(USERNAME) -i $(CONSUMER_ID) -r $(INSTANCE_URL)
+- script: sfdx force:auth:jwt:grant -u $(USERNAME) -f $(key.secureFilePath) -i $(CONSUMER_ID) -r $(INSTANCE_URL)
   displayName: 'Authenticating'
 
   # Submit the deployment to the target
