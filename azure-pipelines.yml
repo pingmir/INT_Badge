@@ -28,3 +28,20 @@ steps:
 # Login to the target org
 - script: sfdx force:auth:jwt:grant -u $(USERNAME) -i $(CONSUMER_ID) -r $(INSTANCE_URL)
   displayName: 'Authenticating'
+
+  # Submit the deployment to the target
+# the src folder contains all of the metadata
+# make sure you have a package.xml in there too though!
+- script: sfdx force:mdapi:deploy -d src -l RunLocalTests -u $(USERNAME)
+  displayName: 'Submit Deployment'
+
+# Monitors the deployment through the DX CLI
+# If you don't specify a job Id, it just uses the latest deployment. Neat!
+- script: sfdx force:mdapi:deploy:report --wait=-1 -u $(USERNAME)
+  displayName: 'Monitor Deployment'
+
+# If the build gets canceled for any reason, I want to cancel the actual deployment too!
+# By adding a condition here means this step always run when the build is canceled
+- script: sfdx force:mdapi:deploy:cancel -u $(USERNAME)
+  condition: canceled()
+  displayName: 'Aborting Deployment'
