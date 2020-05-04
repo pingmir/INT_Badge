@@ -16,11 +16,6 @@ steps:
 - script: npm install sfdx-cli --global
   displayName: 'Installing SFDX'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
 # The Authentication is via JWT. So you need a the private key of the certificate used.
 - task: DownloadSecureFile@1
   name: key
