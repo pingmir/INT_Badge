@@ -13,7 +13,7 @@ steps:
 - checkout: self
 
 # I used DX CLI to deploy, so the machine needs to have it installed
-- script: npm install sfdx-cli --global
+- script: sudo npm install sfdx-cli --global
   displayName: 'Installing SFDX'
 
 # The Authentication is via JWT. So you need a the private key of the certificate used.
