@@ -23,6 +23,8 @@ steps:
     secureFile: 'server.key'
     retryCount: '5'
   
+- script: sfdx force:auth:logout --targetusername $(USERNAME) -p
+
 # Login to the target org
 - script: sfdx force:auth:jwt:grant -u $(USERNAME) -f $(key.secureFilePath) -i $(Client_ID) -r $(INSTANCE_URL)
 #- script: sfdx force:auth:jwt:grant --clientid $(Client_ID) --jwtkeyfile $AGENT_TEMPDIRECTORY/server.key --username $(USERNAME) --instanceurl $(INSTANCE_URL)
