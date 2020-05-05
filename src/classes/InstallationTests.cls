@@ -24,10 +24,15 @@ private class InstallationTests {
         testOpp.Amount = 500000;
         insert testOpp;
         
+        ServiceTokens__c servToken = new ServiceTokens__c();
+        servToken.Name = 'ProjectServiceToken';
+        servToken.Token__c = '299ad19f-9193-42f5-8019-1ba7368612ad';
+        insert servToken;
+        
     }
 
     //Test empty trigger stub
-    static testmethod void testProjectTrigger() {
+    static @istest void testProjectTrigger() {
         Opportunity opp = [SELECT Id FROM Opportunity LIMIT 1];
         Project__c p = new Project__c();
         p.Opportunity__c = opp.Id;
@@ -35,8 +40,11 @@ private class InstallationTests {
     }
     
     //Test empty service stub
-	static testmethod void testProjectCalloutServiceForInstall() {
-	    ProjectCalloutService.postOpportunityToPMS();
+	static @istest void testProjectCalloutServiceForInstall() {
+        Opportunity op = [select id from opportunity where name = 'Test Opportunity' limit 1][0];
+        List<Id> l = new List<Id>();
+        l.add(op.Id);
+	    ProjectCalloutService.postOpportunityToPMS(l);
 	}
 
 }
